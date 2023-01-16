@@ -11,7 +11,6 @@ const instance: AxiosInstance = axios.create({
 });
 
 const responseBody = (response: AxiosResponse) => {
-  console.log(response.data.result)
   return response.data.result
 }
 

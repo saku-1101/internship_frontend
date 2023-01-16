@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES5",
     "useDefineForClassFields": true,
-    "module": "ESNext",
+    "module": "AMD",
     "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
@@ -16,6 +16,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "outDir": "myOuts/",
     "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
     "references": [{ "path": "./tsconfig.node.json" }],
     "exclude": ["node_modules"]
