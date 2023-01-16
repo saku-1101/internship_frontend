@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { Prefecture } from "@/service/models/pref.interface";
-    
-interface Props {
-  prefectures: Prefecture[];
-}
-defineProps<Props>();
+
+defineProps< {
+    prefectures: Prefecture[]
+}>()
     
 </script>
 
