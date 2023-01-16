@@ -1,29 +1,62 @@
 <script setup lang="ts">
-  import HelloWorld from './components/HelloWorld.vue'
-</script>
+  import { Prefecture } from "@/service/models/pref.interface";
+  import { onMounted, ref } from 'vue';
+  import CheckBoxes from "./components/CheckBoxes.vue";
+  import axios, { AxiosInstance } from 'axios'
+  const instance: AxiosInstance = axios.create({
+  method: 'GET',
+  baseURL: 'https://opendata.resas-portal.go.jp',
+  headers: {
+    'X-API-KEY': 'pE2gjuRcz7CFlQ95Mwc5l6ABDJdOEBbbvNEU5FrO',
+    'Content-Type': 'application/json;charset=UTF-8',
+  },
+})
+  class apiService {
+  prefectures(): Promise<Prefecture[]> {
+    return instance.get("/api/v1/prefectures").then((res) => {
+      return res.data.result;
+    });
+  }
+  populationComposition(prefCode: number): Promise<compositionPerYear> {
+    return instance
+      .get("/api/v1/population/composition/perYear", {
+        params: {
+          prefCode,
+          cityCode: "-",
+        },
+      })
+      .then((res) => {
+        return res.data.result;
+      });
+  }
+}
 
+
+interface compositionPerYear {
+  boundaryYear: number;
+  data: [
+    {
+      label: string;
+      data: [
+        {
+          year: number;
+          value: number;
+        }
+      ];
+    }
+  ];
+}
+const resasInstance = new apiService();
+  const prefectures = ref([] as Prefecture[]);
+  onMounted(async () => {
+  prefectures.value = await resasInstance.prefectures();
+});
+
+</script>
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <h1>都道府県別の人口の推移</h1>
+  <CheckBoxes :prefectures="prefectures" />
+  
 </template>
 
-<style scoped>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
-  }
-</style>
+

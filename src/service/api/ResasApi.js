@@ -11,11 +11,16 @@ var instance = axios_1["default"].create({
     }
 });
 var responseBody = function (response) {
-    console.log(response.data);
-    return response.data;
+    console.log(response.data.result);
+    return response.data.result;
 };
-function getPrefecture() {
-    return instance.get('api/v1/prefectures')
+// function getPrefecture(): Promise<Prefectures> {
+//   return instance.get('api/v1/prefectures')
+//   .then(responseBody)
+//   .catch((err) => console.log(err))
+// }
+function getComposition(prefCode) {
+    return instance.get('/api/v1/population/composition/perYear?prefCode=' + prefCode)
         .then(responseBody)["catch"](function (err) { return console.log(err); });
 }
-getPrefecture();
+getComposition(1);
