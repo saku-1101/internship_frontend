@@ -18,12 +18,15 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
 ## Build Steps
+
 1. create node_modules
+
 ```
 npm i
 ```
+
 2. Build and create the server
+
 ```
 npm run dev
 ```
-
