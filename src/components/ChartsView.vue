@@ -5,11 +5,12 @@
   const props = defineProps<{
     composition: Highcharts.SeriesOptionsType[]
   }>()
-  console.log(props.composition)
+  
 
   watch(
     props.composition,
     (pev, next) => {
+      console.log(props.composition)
       Highcharts.chart('container', {
         chart: {
           marginTop: 25,

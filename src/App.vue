@@ -15,9 +15,22 @@
 
 const val = ref<compositionOfPopulation>()
 const dataForProps = ref<Array<Highcharts.SeriesOptionsType>>([]);
+let ispainted = false; // 絵画されているか否かのフラグ
 
 async function BtnClicked(prefCode: number, prefName: string) {
-  // クリックされた都道府県のcompositionOfPopulationを取得
+  for (let index = 0; index < dataForProps.value.length; index++) {
+    const el = dataForProps.value[index];
+    if (el.name == prefName) {
+      dataForProps.value.splice(index,1)
+      console.log(dataForProps.value);
+      ispainted = true
+      break
+    }
+  }
+  
+  // 絵画未の場合
+  if (!ispainted) {
+    // クリックされた都道府県のcompositionOfPopulationを取得
     val.value = await getComposition(prefCode)
     // 総人口，年少人口etc...から総人口のデータを抽出
     for (let index = 0; index < val.value.data.length; index++) {
@@ -32,6 +45,9 @@ async function BtnClicked(prefCode: number, prefName: string) {
         dataForProps.value.push({ name: prefName, type: 'line', data: highdata })
       }
     }
+  }
+  ispainted = false
+  
 }
 
 </script>
