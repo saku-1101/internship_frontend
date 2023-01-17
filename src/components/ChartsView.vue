@@ -1,23 +1,27 @@
 <script setup lang="ts">
-  import * as HighCharts from 'highcharts'
   import { watch } from 'vue'
-  import { propsComposition } from '@/service/models/compositionData.class'
+  import * as Highcharts from 'highcharts'
 
   const props = defineProps<{
-    composition: propsComposition[]
+    composition: Highcharts.SeriesOptionsType[]
   }>()
+  console.log(props.composition)
 
   watch(
     props.composition,
-    (next, prev) => {
-
-      HighCharts.chart({
+    (pev, next) => {
+      Highcharts.chart('container', {
         chart: {
-          renderTo: 'chart',
           marginTop: 25,
         },
         title: {
           text: '',
+        },
+        tooltip: {
+          backgroundColor: '#FCFFC5',
+          borderColor: 'black',
+          borderRadius: 10,
+          borderWidth: 3,
         },
         yAxis: {
           title: {
@@ -35,7 +39,7 @@
           },
         },
         xAxis: {
-          tickInterval: 5,
+          tickInterval: 10,
           title: { align: 'high', text: '年度' },
         },
         legend: {
@@ -50,7 +54,7 @@
         credits: {
           enabled: false,
         },
-        series: [],
+        series: next,
       })
     },
     { deep: true }

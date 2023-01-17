@@ -10,11 +10,11 @@
 <template>
   <div>
     <h2>都道府県</h2>
-    <div class="check-boxs">
+    <div id="check-boxes">
       <div
         v-for="prefecture in prefectures"
+        id="check-boxes__box"
         :key="prefecture.prefCode"
-        class="check-boxs__box"
       >
         <input
           type="checkbox"
@@ -30,7 +30,7 @@
 </template>
 
 <style lang="scss">
-  .check-boxs {
+  #check-boxes {
     display: flex;
     flex-wrap: wrap;
     &__box {

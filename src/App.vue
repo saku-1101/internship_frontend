@@ -1,38 +1,44 @@
 <script setup lang="ts">
+  import * as Highcharts from 'highcharts';
   import { Prefecture } from "@/service/models/pref.interface";
   import { compositionOfPopulation } from "@/service/models/population.interface";
-  import { propsComposition } from "@/service/models/compositionData.interface";
   import { getPrefectures, getComposition }  from "@/service/api/resasApi";
   import { onMounted, ref } from 'vue';
   import CheckBoxes from "./components/CheckBoxes.vue";
-  import HighCharts from "./components/HighCharts.vue";
+  import ChartsView from "./components/ChartsView.vue";
 
   const prefectures = ref<Prefecture[]>([]);
   onMounted(async () => {
   prefectures.value = await getPrefectures();
 });
 
+
 const val = ref<compositionOfPopulation>()
+const dataForProps = ref<Array<Highcharts.SeriesOptionsType>>([]);
 
-
-
-const dataForProps = ref<propsComposition[]>([]);
 async function BtnClicked(prefCode: number, prefName: string) {
+  // クリックされた都道府県のcompositionOfPopulationを取得
     val.value = await getComposition(prefCode)
+    // 総人口，年少人口etc...から総人口のデータを抽出
     for (let index = 0; index < val.value.data.length; index++) {
       const element = val.value.data[index];
       if (element['label'] == "総人口") {
-        dataForProps.value.push(new propsComposition(prefName, prefCode, element['data'][0]))
+        // label=総人口のdataのyear, valueをHighChartが読める形でdataに格納
+        const highdata: Array<number[]> = []
+        for (let index = 0; index < element['data'].length; index++) {
+          const el = element['data'][index];
+          highdata.push([el['year'], el['value']])
+        }
+        dataForProps.value.push({ name: prefName, type: 'line', data: highdata })
       }
     }
-    console.log(dataForProps);
 }
 
 </script>
 <template>
-  <h1>都道府県別人口の推移</h1>
+  <h1>都道府県別人口推移</h1>
   <CheckBoxes :prefectures="prefectures" @pref-clicked ="BtnClicked"/>
-  <HighCharts :composition = "dataForProps" />
+  <ChartsView :composition = "dataForProps" />
 </template>
 
 
