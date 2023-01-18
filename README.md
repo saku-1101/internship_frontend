@@ -1,5 +1,28 @@
-# Deploied @
+# 🚀 Deploy @
 https://master--population-frontend.netlify.app/
+
+## 使用技術
+ ⚡️ Vue 3, Vite 3, and yarn
+
+ 🎨 TailwindCSS and Sass
+
+ ❤️ Use the new <script setup> syntax
+
+ 📈 Highchart
+
+ 🗾 RESAS(地域経済分析システム) API
+
+ ⌨️ TypeScript
+
+ 👗 Code Styling with Eslint and Prettier
+
+ ⚙️ Unit Testing with Vitest
+
+ 🚴🏻♀️ CI/CD with GitHub Actions
+
+ 🚀 Deploy on Netlify
+
+ 📡 Http request with axios
 
 # Vue 3 + TypeScript + Vite
 
@@ -32,4 +55,10 @@ npm i
 
 ```
 npm run dev
+```
+
+3. Execute Unit Test
+
+```
+npm run test
 ```
