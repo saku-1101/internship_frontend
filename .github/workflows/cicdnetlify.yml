@@ -25,11 +25,9 @@ jobs:
       # ( Build to ./dist or other directory... )
 
       - name: Deploy to Netlify
-        uses: jsmrcaga/action-netlify-deploy@master
-        with:
-          build_directory: 'dist'
+        uses: netlify/actions/cli@master
+        env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-           NETLIFY_DEPLOY_MESSAGE: "Prod deploy v${{ github.ref }}"
-          NETLIFY_DEPLOY_TO_PROD: true
-        timeout-minutes: 1
+        with:
+          args: deploy --dir=dist --prod
