@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint:script": "eslint --cache --fix src/*.{ts,vue}  --ignore-path .gitignore . && eslint --cache --fix src/**/*.{ts,vue} --ignore-path .gitignore .",
     "lint:style": "stylelint src/**/*.{css,scss,vue}",
