@@ -2,7 +2,7 @@
   import * as Highcharts from 'highcharts';
   import { Prefecture } from "@/service/models/pref.interface";
   import { compositionOfPopulation } from "@/service/models/population.interface";
-  import { getPrefectures, getComposition }  from "@/service/api/resasApi";
+  import { getPrefectures, getComposition }  from "@/service/api/ResasApi";
   import { onMounted, ref } from 'vue';
   import CheckBoxes from "./components/CheckBoxes.vue";
   import ChartsView from "./components/ChartsView.vue";
