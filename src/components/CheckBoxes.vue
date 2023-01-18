@@ -17,6 +17,7 @@
         :key="prefecture.prefCode"
       >
         <input
+          id="checkbox"
           type="checkbox"
           :name="prefecture.prefName"
           @click="$emit('pref-clicked', prefecture.prefCode, prefecture.prefName)"

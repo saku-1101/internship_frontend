@@ -60,7 +60,7 @@
   )
 </script>
 <template>
-  <div id="container" style="">
+  <div id="container">
     <div id="container__chart"></div>
   </div>
 </template>

@@ -41,6 +41,8 @@ async function BtnClicked(prefCode: number, prefName: string) {
           const el = element['data'][index];
           highdata.push([el['year'], el['value']])
         }
+        console.log(highdata);
+        
         dataForProps.value.push({ name: prefName, type: 'line', data: highdata })
       }
     }
