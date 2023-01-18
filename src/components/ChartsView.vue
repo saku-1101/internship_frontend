@@ -5,7 +5,6 @@
   const props = defineProps<{
     composition: Highcharts.SeriesOptionsType[]
   }>()
-  
 
   watch(
     props.composition,
@@ -13,16 +12,11 @@
       console.log(props.composition)
       Highcharts.chart('container', {
         chart: {
-          marginTop: 25,
+          marginTop: 50,
+          marginLeft: 80
         },
         title: {
           text: '',
-        },
-        tooltip: {
-          backgroundColor: '#FCFFC5',
-          borderColor: 'black',
-          borderRadius: 10,
-          borderWidth: 3,
         },
         yAxis: {
           title: {
@@ -45,17 +39,21 @@
         },
         legend: {
           layout: 'vertical',
-          backgroundColor: '#FFFFFF',
-          floating: true,
-          align: 'left',
-          x: 70,
-          verticalAlign: 'top',
-          y: 20,
+          align: 'right',
+          verticalAlign: 'middle',
         },
         credits: {
           enabled: false,
         },
         series: next,
+        plotOptions: {
+          series: {
+            label: {
+              connectorAllowed: false,
+            },
+            pointStart: 2010,
+          },
+        },
       })
     },
     { deep: true }
@@ -64,3 +62,13 @@
 <template>
   <div id="container" style="width: 100%; height: 400px"></div>
 </template>
+<style>
+  .highcharts-data-table thead tr,
+  .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+  }
+
+  .highcharts-data-table tr:hover {
+    background: #f1f7ff;
+  }
+</style>

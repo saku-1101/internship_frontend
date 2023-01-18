@@ -27,7 +27,6 @@ async function BtnClicked(prefCode: number, prefName: string) {
       break
     }
   }
-  
   // 絵画未の場合
   if (!ispainted) {
     // クリックされた都道府県のcompositionOfPopulationを取得
