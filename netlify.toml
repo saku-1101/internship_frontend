@@ -1,7 +1,3 @@
-[build.environment]
-  NPM_FLAGS = "--version"
-  NODE_VERSION = "16"
-  
 # example netlify.toml
 [build]
   command = "vite build"
