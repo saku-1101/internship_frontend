@@ -10,10 +10,10 @@
     props.composition,
     (pev, next) => {
       console.log(props.composition)
-      Highcharts.chart('container', {
+      Highcharts.chart('container__chart', {
         chart: {
           marginTop: 50,
-          marginLeft: 80
+          marginLeft: 80,
         },
         title: {
           text: '',
@@ -60,9 +60,11 @@
   )
 </script>
 <template>
-  <div id="container" style="width: 100%; height: 400px"></div>
+  <div id="container" style="">
+    <div id="container__chart"></div>
+  </div>
 </template>
-<style>
+<style lang="scss">
   .highcharts-data-table thead tr,
   .highcharts-data-table tr:nth-child(even) {
     background: #f8f8f8;
@@ -70,5 +72,14 @@
 
   .highcharts-data-table tr:hover {
     background: #f1f7ff;
+  }
+  #container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    &__chart {
+      width: 80vw;
+      height: 40vh;
+    }
   }
 </style>

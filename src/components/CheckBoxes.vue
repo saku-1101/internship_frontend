@@ -33,6 +33,7 @@
   #check-boxes {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 10vh;
     &__box {
       margin-right: 8px;
     }

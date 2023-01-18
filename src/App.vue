@@ -51,9 +51,28 @@ async function BtnClicked(prefCode: number, prefName: string) {
 
 </script>
 <template>
-  <h1>都道府県別人口推移</h1>
-  <CheckBoxes :prefectures="prefectures" @pref-clicked ="BtnClicked"/>
-  <ChartsView :composition = "dataForProps" />
+  <div id="container">
+    <h1 id="title">都道府県別人口推移</h1>
+    <CheckBoxes :prefectures="prefectures" @pref-clicked ="BtnClicked"/>
+    <ChartsView :composition = "dataForProps" />
+  </div>
+  
 </template>
+
+<style lang="scss">
+template{
+    font-size: 62.5%;
+}
+
+#container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  #title{
+    font-size: calc(2.4rem + ((1vw - 0.64rem) * 2.1429));
+  }
+}
+</style>
 
 
