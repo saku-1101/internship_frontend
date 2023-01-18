@@ -11,11 +11,12 @@
     "lint:style": "stylelint src/**/*.{css,scss,vue}",
     "format": "prettier -w src/*.{ts,vue} && prettier -w src/**/*.{ts,vue}",
     "fix": "npm run format && npm run lint",
-    "test": "vitest",
+    "test": "vitest --dom",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "axios": "^1.2.2",
+    "happy-dom": "^8.1.4",
     "highcharts": "^10.3.2",
     "highcharts-vue": "^1.4.0",
     "vue": "^3.2.45"
@@ -27,6 +28,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
+    "@vue/test-utils": "^2.2.7",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
