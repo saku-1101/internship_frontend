@@ -5,6 +5,7 @@ import { resolve } from 'path'
 export default defineConfig({
   resolve: {
     alias: {
+      src: '/src',
       '@': resolve(__dirname, 'src')
     }
   },
